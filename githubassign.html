@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <!-- Just an image -->
+<nav class="navbar navbar-light bg-light well text-center" >
+    <a class="navbar-brand" href="#">
+      <img src="oke.jpeg" width="70" height="70" alt="">
+    </a>
+    <h1>GitHub Search App</h1>
+  </nav><nav class="navbar navbar-light bg-light">
+    
+      <input class=" mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input"><span class="wdform-required">*</span>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="button">Search</button>
+    
+    </nav>
+        </div>
+        <div id="display">
+
+        </div>
+       
+
+    </div>
+    
+
+
+
+
+    <script>
+            let output ="";
+            
+
+      let search_button=document.getElementById('button');
+      search_button.addEventListener("click", function(e){
+        
+            let cityName= document.getElementById("input").value;
+            if (cityName != "") {
+
+fetch(`https://api.github.com/users/${cityName}`)
+
+  .then(response =>response.json())
+  .then(data => {
+    var userName = data.login;
+		 	var image = data.avatar_url;
+		 	var email = data.email;
+		 	var company = data.company;
+		 	var location = data.location;
+		 	var followers = data.followers;
+		 	var repository = data.public_repos;
+      
+             output = `<div class="well text-center row">
+						<div class="col-sm-4"  style=" border-right: ">
+                        <img src="${image}" height="200px" width="200px ">
+                        </div>
+						<div class="col-sm-4 ml-5">
+							<p>Full Name: ${userName}</p>
+							<p>Email: ${email}</p>
+							<p>Company: ${company}</p>
+							<p>Location: ${location}</p>
+							<p>Public Repository: ${repository}</p>
+							<p>Followers: ${followers}</p>
+						</div>
+					</div>
+                    </div>`;
+
+					
+
+      document.getElementById("display").innerHTML=output;
+    
+
+  })
+}
+
+});
+
+    
+        </script>
+    
+</body>
+</html>

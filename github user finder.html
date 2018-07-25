@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GitHub User</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+
+	<div class="container ">
+		<div class="wrapper m-5 pl-1 pr-1" style="border: 1px solid lightgray">
+		<div class="row ">
+			<div class="col-md-8 offset-md-2 p-4">
+				<h2 class=" mb-4 text-success"><i class="fa fa-github"></i>GitHub User Finder</h2>
+
+					<div class="input-group mb-3">
+					  <input id="userName" type="text" class="form-control" placeholder="Enter User Name" aria-label="Recipient's username" aria-describedby="basic-addon2" autofocus>
+					  <div class="input-group-append ">
+					    <button class="input-group-text " id="searchBtn">Search    </button>
+					  </div>
+					</div>
+					<div class="display"></div>
+			</div>
+	</div>
+</div>
+</div>
+
+	<script src="jq/jq.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+		let output ="";
+		$(document).ready(function(){
+		$('#searchBtn').on('click', function(){
+			var user =	$('#userName').val();
+
+		 if (user != "") {
+
+		 fetch(`https://api.github.com/users/${user}`)
+		 .then(response=> response.json())
+		 .then(data=> {
+
+		 	var userName = data.login;
+		 	var image = data.avatar_url;
+		 	var email = data.email;
+		 	var company = data.company;
+		 	var location = data.location;
+		 	var followers = data.followers;
+		 	var repository = data.public_repos;
+
+		 	output = `<div class=" row shadow p-5 ml-1 alert alert-success container" role="alert">
+						<div class="col-sm-4"  style=" border-right: "><img src="${image}" height="200px" width="200px "></div>
+						<div class="col-sm-4 ml-5">
+							<p>Full Name: ${userName}</p>
+							<p>Email: ${email}</p>
+							<p>Company: ${company}</p>
+							<p>Location: ${location}</p>
+							<p>Public Repository: ${repository}</p>
+							<p>Followers: ${followers}</p>
+						</div>
+					</div>`;
+
+					$('.display').html(output);
+
+
+
+		 });
+
+		 } 
+
+		});
+	});
+
+	</script>
+</body>
+</html>

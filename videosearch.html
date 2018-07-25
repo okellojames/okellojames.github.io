@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>my video collection for watch</title>
+    <style>
+    #display{
+        width: 100;
+     height: auto
+    }</style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+</head>
+<body>
+    <div class="container-fluid well">
+        <h2>
+            
+                        
+                          <div class="row">
+                              <div class="col-md-8 auto">
+                                    <div class="input-group">
+                                            <span class="input-group-btn">
+                                              <button class="btn btn-default" type="button" id="button">Go!</button>
+                                            </span>
+                                            <input type="text" id="vid" class="form-control" placeholder="Search for videos by name">
+                                          </div><!-- /input-group -->
+                              </div>
+                          </div>
+                    
+        </h2>
+        <div class="row">
+            <div class="col-md-5">
+                <div id="display" ><video width="400" controls>
+                        <source src="mov_bbb.mp4" type="video/mp4">
+                        <source src="mov_bbb.ogg" type="video/ogg">
+                        Your browser does not support HTML5 video.
+                      </video>
+                      <video width="400" controls>
+                            <source src="mov_bbb.mp4" type="video/mp4">
+                            <source src="mov_bbb.ogg" type="video/ogg">
+                            Your browser does not support HTML5 video.
+                          </video>
+                          <video width="400" controls>
+                                <source src="mov_bbb.mp4" type="video/mp4">
+                                <source src="mov_bbb.ogg" type="video/ogg">
+                                Your browser does not support HTML5 video.
+                              </video>
+                              <video width="400" controls>
+                                    <source src="mov_bbb.mp4" type="video/mp4">
+                                    <source src="mov_bbb.ogg" type="video/ogg">
+                                    Your browser does not support HTML5 video.
+                                  </video></div>
+            </div>
+            <div class="col-md-6">
+                    <video width="700" controls>
+                            <source src="mov_bbb.mp4" type="video/mp4">
+                            <source src="mov_bbb.ogg" type="video/ogg">
+                            Your browser does not support HTML5 video.
+                          </video>
+                         
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+    <script>
+        let button =document.getElementById('button');
+        button.addEventListener('click',function(){
+            let vid =document.getElementById('vid');
+            if (vid !="") {
+                fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=1778c6d0`)
+            .then(response=>response.json())
+            .then(data=>{
+                console.log(data)
+
+            })
+        }
+        })
+    </script>
+</body>
+</html>
